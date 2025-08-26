@@ -16,15 +16,31 @@ body {
   display: grid;
   place-items: center;
   text-align: center;
-  padding: 88px 16px;
-  background: var(--primary);
+  padding: 140px 16px;
+  /* Use the logo as a background image and make it nicely contain within the hero */
+  background: var(--primary) url('logo.jpg') center/cover no-repeat;
   color: #fff;
+  position: relative;
 }
+/* Dark overlay to ensure text remains legible over the logo */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 25, 47, 0.7);
+  z-index: 1;
+}
+/* Ensure the heading, paragraph and button appear above the overlay */
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+/* Hide any image within the hero (we removed it in the HTML) */
 .hero img {
-  width: 96px;
-  height: auto;
-  margin-bottom: 16px;
-  border-radius: 10px;
+  display: none;
 }
 .hero h1 {
   font-size: 44px;
@@ -93,6 +109,18 @@ li {
 }
 .footer p {
   margin: 0;
+}
+
+/* Gallery grid layout for showcasing wrapped projects */
+.gallery-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.gallery-grid img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
 }
 @media (max-width: 640px) {
   .hero h1 {
